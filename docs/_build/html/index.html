@@ -1,0 +1,221 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Welcome to Tribool’s documentation! &mdash; tribool v0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     'v0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="tribool v0.0.1 documentation" href="#" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="#">tribool v0.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="welcome-to-tribool-s-documentation">
+<h1>Welcome to Tribool&#8217;s documentation!<a class="headerlink" href="#welcome-to-tribool-s-documentation" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="tribool.Tribool">
+<em class="property">class </em><tt class="descclassname">tribool.</tt><tt class="descname">Tribool</tt><big>(</big><em>value=None</em><big>)</big><a class="headerlink" href="#tribool.Tribool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tribool representing three logical states.</p>
+<p>Tribool represents True, False, or Indeterminate using a private
+value set to True, False, or None respectively.</p>
+<dl class="method">
+<dt id="tribool.Tribool.__and__">
+<tt class="descname">__and__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__and__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logical AND of Tribool and other value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tribool.Tribool.__eq__">
+<tt class="descname">__eq__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__eq__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logical equality of Tribool and other value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tribool.Tribool.__ge__">
+<tt class="descname">__ge__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__ge__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logical greater than or equal of Tribool and other value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tribool.Tribool.__gt__">
+<tt class="descname">__gt__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__gt__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logical greater than of Tribool and other value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tribool.Tribool.__index__">
+<tt class="descname">__index__</tt><big>(</big><big>)</big><a class="headerlink" href="#tribool.Tribool.__index__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raise ValueError on conversion to int.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tribool.Tribool.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>value=None</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Intialize Tribool object.</p>
+<p>Tribool(value) &#8211; value may be one of True, False, None, or Tribool.</p>
+<p>None is representative of an indeterminate boolean value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tribool.Tribool.__invert__">
+<tt class="descname">__invert__</tt><big>(</big><big>)</big><a class="headerlink" href="#tribool.Tribool.__invert__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logical negation of Tribool value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tribool.Tribool.__le__">
+<tt class="descname">__le__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__le__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logical less than or equal of Tribool and other value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tribool.Tribool.__lt__">
+<tt class="descname">__lt__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__lt__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logical less than of Tribool and other value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tribool.Tribool.__ne__">
+<tt class="descname">__ne__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__ne__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logical inequality of Tribool and other value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tribool.Tribool.__nonzero__">
+<tt class="descname">__nonzero__</tt><big>(</big><big>)</big><a class="headerlink" href="#tribool.Tribool.__nonzero__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raise ValueError on conversion to bool.</p>
+<p>When this occurs, it may indicate that the logical operators:
+(and, or, not) were used. Python does not permit overloading these
+operators. Use the bitwise (&amp;, <a href="#id1"><span class="problematic" id="id2">|</span></a>, ^) operators instead.
+Likewise, if the comparison operators (&lt;, &lt;=, &gt;, &gt;=) were used
+then a type conversion using Tribool(...) is required.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tribool.Tribool.__or__">
+<tt class="descname">__or__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__or__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logical OR of Tribool and other value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tribool.Tribool.__rand__">
+<tt class="descname">__rand__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__rand__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logical AND of Tribool and other value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tribool.Tribool.__repr__">
+<tt class="descname">__repr__</tt><big>(</big><big>)</big><a class="headerlink" href="#tribool.Tribool.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>String representation of Tribool state.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tribool.Tribool.__ror__">
+<tt class="descname">__ror__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__ror__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logical OR of Tribool and other value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tribool.Tribool.__rxor__">
+<tt class="descname">__rxor__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__rxor__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logical XOR of Tribool and other value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tribool.Tribool.__str__">
+<tt class="descname">__str__</tt><big>(</big><big>)</big><a class="headerlink" href="#tribool.Tribool.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>String representing Tribool value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tribool.Tribool.__trunc__">
+<tt class="descname">__trunc__</tt><big>(</big><big>)</big><a class="headerlink" href="#tribool.Tribool.__trunc__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raise ValueError on truncation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tribool.Tribool.__xor__">
+<tt class="descname">__xor__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__xor__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logical XOR of Tribool and other value.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="#">tribool v0.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Grant Jenks.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
