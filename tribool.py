@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 class Tribool:
-    """Tribool representing three logical states.
+    """Tribool implementation of three-valued logic.
 
     Tribool represents True, False, or Indeterminate using a private
     value set to True, False, or None respectively.
@@ -95,7 +95,7 @@ class Tribool:
         return 'Indeterminate' if self._value is None else str(self._value)
 
     def __repr__(self):
-        """String representation of Tribool state."""
+        """String representation of Tribool."""
         return 'Tribool({0})'.format(str(self._value))
 
     def _resolve(self, that):
@@ -170,3 +170,10 @@ class Tribool:
             (None, True) : None,
             (None, False) : False,
             (None, None) : None }
+
+__title__ = 'tribool'
+__version__ = '0.0.5'
+__build__ = 0x000005
+__author__ = 'Grant Jenks'
+__license__ = 'Apache 2.0'
+__copyright__ = 'Copyright 2012 Grant Jenks'
