@@ -89,6 +89,8 @@ class Tribool:
                          ' (use the bitwise (&, |, ^, ~) operators'
                          ' or insert a cast and use Tribool(...).value)')
 
+    __bool__ = __nonzero__
+
     def __index__(self):
         """Raise ValueError on conversion to int."""
         raise ValueError('Cannot convert Tribool to index')
