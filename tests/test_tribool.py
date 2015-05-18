@@ -9,8 +9,8 @@ from tribool import Tribool
 def test_init():
     """Test initializer values for Tribool."""
     for value in (True, False, None):
-        assert Tribool(value)._value == value
-        assert Tribool(Tribool(value))._value == value
+        assert Tribool(value).value == value
+        assert Tribool(Tribool(value)).value == value
 
 @raises(ValueError)
 def test_init_raises():
@@ -19,31 +19,31 @@ def test_init_raises():
 
 def test_not():
     for value in (True, False, None):
-        assert (~Tribool(value))._value == Tribool._not[value]
+        assert (~Tribool(value)).value == Tribool._not[value]
 
 def test_and():
     for value in (True, False, None):
         for other in (True, False, None):
             result = Tribool._and[value, other]
-            assert (Tribool(value) & Tribool(other))._value == result
-            assert (value & Tribool(other))._value == result
-            assert (Tribool(value) & other)._value == result
+            assert (Tribool(value) & Tribool(other)).value == result
+            assert (value & Tribool(other)).value == result
+            assert (Tribool(value) & other).value == result
 
 def test_or():
     for value in (True, False, None):
         for other in (True, False, None):
             result = Tribool._or[value, other]
-            assert (Tribool(value) | Tribool(other))._value == result
-            assert (value | Tribool(other))._value == result
-            assert (Tribool(value) | other)._value == result
+            assert (Tribool(value) | Tribool(other)).value == result
+            assert (value | Tribool(other)).value == result
+            assert (Tribool(value) | other).value == result
 
 def test_xor():
     for value in (True, False, None):
         for other in (True, False, None):
             result = Tribool._xor[value, other]
-            assert (Tribool(value) ^ Tribool(other))._value == result
-            assert (value ^ Tribool(other))._value == result
-            assert (Tribool(value) ^ other)._value == result
+            assert (Tribool(value) ^ Tribool(other)).value == result
+            assert (value ^ Tribool(other)).value == result
+            assert (Tribool(value) ^ other).value == result
 
 def test_cmp():
     for value in (True, False, None):
@@ -52,10 +52,10 @@ def test_cmp():
             tri_other = Tribool(other)
 
             _eq = Tribool._eq[value, other]
-            assert (tri_value == tri_other)._value == _eq
+            assert (tri_value == tri_other).value == _eq
 
             _lt = Tribool._lt[value, other]
-            assert (tri_value < tri_other)._value == _lt
+            assert (tri_value < tri_other).value == _lt
 
             tri_value != tri_other
             tri_value <= tri_other

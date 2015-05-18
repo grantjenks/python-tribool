@@ -16,6 +16,13 @@ class Tribool:
         """
         self._value = self._resolve(value)
 
+    @property
+    def value(self):
+        """Property representing the underlying value True, False or
+        Indeterminate which are mapped to True, False or None in Python.
+        """
+        return self._value
+
     def __invert__(self):
         """Logical negation of Tribool value."""
         return Tribool(Tribool._not[self._value])
@@ -74,13 +81,13 @@ class Tribool:
 
         When this occurs, it may indicate that the logical operators:
         (and, or, not) were used. Python does not permit overloading these
-        operators. Use the bitwise (&, |, ^) operators instead.
+        operators. Use the bitwise (&, |, ^, ~) operators instead.
         Likewise, if the comparison operators (<, <=, >, >=) were used
         then a type conversion using Tribool(...) is required.
         """
-        raise ValueError('Cannot convert Tribool to bool'
-                         ' (use the bitwise (&, |, ^) operators'
-                         ' or insert a cast to Tribool(...))')
+        raise ValueError('Cannot implicitly convert Tribool to bool'
+                         ' (use the bitwise (&, |, ^, ~) operators'
+                         ' or insert a cast and use Tribool(...).value)')
 
     def __index__(self):
         """Raise ValueError on conversion to int."""
@@ -105,10 +112,10 @@ class Tribool:
         """
         if isinstance(that, Tribool):
             return that._value
-        elif isinstance(that, bool) or (that is None):
+        elif isinstance(that, bool) or isinstance(that, type(None)):
             return that
         else:
-            raise ValueError('Unsupported Type')
+            raise ValueError('Unsupported Value: ' + repr(that))
 
     def _check(self):
         """Check invariant of Tribool."""
