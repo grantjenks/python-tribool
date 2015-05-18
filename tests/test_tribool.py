@@ -3,7 +3,7 @@
 import nose
 from nose.tools import raises
 
-from context import tribool
+from .context import tribool
 from tribool import Tribool
 
 def test_init():
