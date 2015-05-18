@@ -45,11 +45,22 @@ def test_xor():
             assert (value ^ Tribool(other))._value == result
             assert (Tribool(value) ^ other)._value == result
 
-def test_lt():
+def test_cmp():
     for value in (True, False, None):
         for other in (True, False, None):
-            result = Tribool._lt[value, other]
-            assert (Tribool(value) < Tribool(other))._value == result
+            tri_value = Tribool(value)
+            tri_other = Tribool(other)
+
+            _eq = Tribool._eq[value, other]
+            assert (tri_value == tri_other)._value == _eq
+
+            _lt = Tribool._lt[value, other]
+            assert (tri_value < tri_other)._value == _lt
+
+            tri_value != tri_other
+            tri_value <= tri_other
+            tri_value > tri_other
+            tri_value >= tri_other
 
 @raises(ValueError)
 def test_bool():
@@ -59,10 +70,19 @@ def test_bool():
 def test_int():
     int(Tribool())
 
+@raises(ValueError)
+def test_index():
+    values = [0, 1, 2, 3]
+    values[Tribool(True)]
+
 def test_str():
     assert str(Tribool(True)) == 'True'
     assert str(Tribool(False)) == 'False'
     assert str(Tribool(None)) == 'Indeterminate'
+
+def test_check():
+    for value in (True, False, None):
+        Tribool(value)._check()
 
 def test_repr():
     assert repr(Tribool(True)) == 'Tribool(True)'
