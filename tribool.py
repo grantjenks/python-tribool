@@ -4,7 +4,7 @@ class Tribool:
     """Tribool implementation of three-valued logic.
 
     Tribool represents True, False, or Indeterminate using a private
-    value set to True, False, or None respectively.
+    `_value` member set to True, False, or None respectively.
     """
 
     def __init__(self, value=None):
@@ -50,7 +50,7 @@ class Tribool:
 
     def __ne__(self, that):
         """Logical inequality of Tribool and other value."""
-        return not Tribool(Tribool._eq[self._value, self._resolve(that)])
+        return ~Tribool(Tribool._eq[self._value, self._resolve(that)])
 
     def __lt__(self, that):
         """Logical less than of Tribool and other value."""
