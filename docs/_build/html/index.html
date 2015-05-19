@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,15 +6,15 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Tribool Documentation &mdash; tribool 0.0.5 documentation</title>
+    <title>Tribool: Three-Valued Logic &mdash; Tribool 0.5.1 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
-        VERSION:     '0.0.5',
+        URL_ROOT:    './',
+        VERSION:     '0.5.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,169 +23,93 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="tribool 0.0.5 documentation" href="#" /> 
+    <link rel="top" title="Tribool 0.5.1 documentation" href="#" />
+    <link rel="next" title="Tribool API Reference" href="api.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li><a href="#">tribool 0.0.5 documentation</a> &raquo;</li> 
+        <li class="right" >
+          <a href="api.html" title="Tribool API Reference"
+             accesskey="N">next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">Tribool 0.5.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
-  <div class="section" id="tribool-documentation">
-<h1>Tribool Documentation<a class="headerlink" href="#tribool-documentation" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
-<dt id="tribool.Tribool">
-<em class="property">class </em><tt class="descclassname">tribool.</tt><tt class="descname">Tribool</tt><big>(</big><em>value=None</em><big>)</big><a class="headerlink" href="#tribool.Tribool" title="Permalink to this definition">¶</a></dt>
-<dd><p>Tribool implementation of three-valued logic.</p>
-<p>Tribool represents True, False, or Indeterminate using a private
-value set to True, False, or None respectively.</p>
-<dl class="method">
-<dt id="tribool.Tribool.__and__">
-<tt class="descname">__and__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__and__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Logical AND of Tribool and other value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tribool.Tribool.__eq__">
-<tt class="descname">__eq__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__eq__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Logical equality of Tribool and other value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tribool.Tribool.__ge__">
-<tt class="descname">__ge__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__ge__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Logical greater than or equal of Tribool and other value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tribool.Tribool.__gt__">
-<tt class="descname">__gt__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__gt__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Logical greater than of Tribool and other value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tribool.Tribool.__index__">
-<tt class="descname">__index__</tt><big>(</big><big>)</big><a class="headerlink" href="#tribool.Tribool.__index__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Raise ValueError on conversion to int.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tribool.Tribool.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>value=None</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Intialize Tribool object.</p>
-<p>Tribool(value) &#8211; value may be one of True, False, None, or Tribool.</p>
-<p>None is representative of an indeterminate boolean value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tribool.Tribool.__invert__">
-<tt class="descname">__invert__</tt><big>(</big><big>)</big><a class="headerlink" href="#tribool.Tribool.__invert__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Logical negation of Tribool value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tribool.Tribool.__le__">
-<tt class="descname">__le__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__le__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Logical less than or equal of Tribool and other value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tribool.Tribool.__lt__">
-<tt class="descname">__lt__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__lt__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Logical less than of Tribool and other value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tribool.Tribool.__ne__">
-<tt class="descname">__ne__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__ne__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Logical inequality of Tribool and other value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tribool.Tribool.__nonzero__">
-<tt class="descname">__nonzero__</tt><big>(</big><big>)</big><a class="headerlink" href="#tribool.Tribool.__nonzero__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Raise ValueError on conversion to bool.</p>
-<p>When this occurs, it may indicate that the logical operators:
-(and, or, not) were used. Python does not permit overloading these
-operators. Use the bitwise (&amp;, <a href="#id1"><span class="problematic" id="id2">|</span></a>, ^) operators instead.
-Likewise, if the comparison operators (&lt;, &lt;=, &gt;, &gt;=) were used
-then a type conversion using Tribool(...) is required.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tribool.Tribool.__or__">
-<tt class="descname">__or__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__or__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Logical OR of Tribool and other value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tribool.Tribool.__rand__">
-<tt class="descname">__rand__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__rand__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Logical AND of Tribool and other value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tribool.Tribool.__repr__">
-<tt class="descname">__repr__</tt><big>(</big><big>)</big><a class="headerlink" href="#tribool.Tribool.__repr__" title="Permalink to this definition">¶</a></dt>
-<dd><p>String representation of Tribool.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tribool.Tribool.__ror__">
-<tt class="descname">__ror__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__ror__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Logical OR of Tribool and other value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tribool.Tribool.__rxor__">
-<tt class="descname">__rxor__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__rxor__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Logical XOR of Tribool and other value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tribool.Tribool.__str__">
-<tt class="descname">__str__</tt><big>(</big><big>)</big><a class="headerlink" href="#tribool.Tribool.__str__" title="Permalink to this definition">¶</a></dt>
-<dd><p>String representing Tribool value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tribool.Tribool.__trunc__">
-<tt class="descname">__trunc__</tt><big>(</big><big>)</big><a class="headerlink" href="#tribool.Tribool.__trunc__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Raise ValueError on truncation.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tribool.Tribool.__xor__">
-<tt class="descname">__xor__</tt><big>(</big><em>that</em><big>)</big><a class="headerlink" href="#tribool.Tribool.__xor__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Logical XOR of Tribool and other value.</p>
-</dd></dl>
-
-</dd></dl>
-
+  <div class="section" id="tribool-three-valued-logic">
+<h1>Tribool: Three-Valued Logic<a class="headerlink" href="#tribool-three-valued-logic" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">introduction</p>
+</div>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">quickstart</p>
+</div>
+<div class="admonition-todo admonition" id="index-2">
+<p class="first admonition-title">Todo</p>
+<p class="last">tutorial</p>
+</div>
+<div class="section" id="reference-and-indices">
+<h2>Reference and Indices<a class="headerlink" href="#reference-and-indices" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Tribool API Reference</a></li>
+</ul>
+</div>
+<ul class="simple">
+<li><a class="reference external" href="http://www.grantjenks.com/docs/tribool/">Tribool Documentation</a></li>
+<li><a class="reference external" href="https://pypi.python.org/pypi/tribool/">Tribool at PyPI</a></li>
+<li><a class="reference external" href="https://github.com/grantjenks/python_tribool/">Tribool at GitHub</a></li>
+<li><a class="reference external" href="https://github.com/grantjenks/python_tribool/issues/">Tribool Issue Tracker</a></li>
+<li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
+<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
+</ul>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/index.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tribool: Three-Valued Logic</a><ul>
+<li><a class="reference internal" href="#reference-and-indices">Reference and Indices</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="api.html"
+                        title="next chapter">Tribool API Reference</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -204,18 +126,20 @@ then a type conversion using Tribool(...) is required.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li><a href="#">tribool 0.0.5 documentation</a> &raquo;</li> 
-      </ul>
-    </div>
     <div class="footer">
-        &copy; Copyright 2012. Grant Jenks.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      &copy;2015, Grant Jenks.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+      |
+      <a href="_sources/index.txt"
+          rel="nofollow">Page source</a></li>
     </div>
+
+    
+
+    
   </body>
 </html>

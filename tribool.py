@@ -181,8 +181,8 @@ class Tribool:
             (None, None) : None }
 
 __title__ = 'tribool'
-__version__ = '0.0.5'
-__build__ = 0x000005
+__version__ = '0.5.1'
+__build__ = 0x000501
 __author__ = 'Grant Jenks'
 __license__ = 'Apache 2.0'
-__copyright__ = 'Copyright 2012 Grant Jenks'
+__copyright__ = 'Copyright 2015 Grant Jenks'
