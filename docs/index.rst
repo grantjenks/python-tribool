@@ -60,6 +60,11 @@ Tutorial
    // can't use short-circuiting operators
    // http://en.wikipedia.org/wiki/Null_(SQL)
    // http://www.boost.org/doc/libs/release/doc/html/tribool.html
+   // tribools are singletons
+   // tribools are hashable (is operator)
+   // tribools are container-able (is operator)
+   // tribool equality is special
+
 
 Reference and Indices
 ---------------------
