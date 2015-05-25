@@ -1,20 +1,54 @@
 # -*- coding: utf-8 -*-
 
-class Tribool:
+import threading
+
+class Tribool(object):
     """Tribool implementation of three-valued logic.
 
     Tribool represents True, False, or Indeterminate using a private
     `_value` member set to True, False, or None respectively.
     """
+    _lock = threading.Lock()
+    _cache = {}
+
+    def __new__(cls, value=None):
+        """Create Tribool object.
+
+        Instances are returned from a cache if able.
+        This method is thread-safe.
+        """
+        value = cls._resolve(value)
+
+        if value not in cls._cache:
+            with cls._lock:
+                if value not in cls._cache:
+                    return super(Tribool, cls).__new__(cls)
+
+        return cls._cache[value]
 
     def __init__(self, value=None):
         """Intialize Tribool object.
 
-        Tribool(value) -- value may be one of True, False, None, or Tribool.
-
+        `value` may be one of True, False, None, or Tribool.
         None is representative of an indeterminate boolean value.
         """
+        if hasattr(self, '_value'):
+            return # Already initialized.
         self._value = self._resolve(value)
+        self._cache[value] = self
+
+    @classmethod
+    def _resolve(cls, that):
+        """Resolve given value to one of True, False, or None.
+
+        Raises ValueError if given value's type is unsupported.
+        """
+        if that is True or that is False or that is None:
+            return that
+        elif isinstance(that, cls):
+            return that._value
+        else:
+            raise ValueError('Unsupported Value: ' + repr(that))
 
     @property
     def value(self):
@@ -76,6 +110,10 @@ class Tribool:
         """Logical greater than or equal of Tribool and other value."""
         return ~(self < that)
 
+    def __hash__(self):
+        """Hash of Tribool."""
+        return id(self)
+
     def __nonzero__(self):
         """Raise ValueError on conversion to bool.
 
@@ -106,18 +144,6 @@ class Tribool:
     def __repr__(self):
         """String representation of Tribool."""
         return 'Tribool({0})'.format(str(self._value))
-
-    def _resolve(self, that):
-        """Resolve given value to one of True, False, or None.
-
-        Raises ValueError if given value's type is unsupported.
-        """
-        if isinstance(that, Tribool):
-            return that._value
-        elif isinstance(that, bool) or isinstance(that, type(None)):
-            return that
-        else:
-            raise ValueError('Unsupported Value: ' + repr(that))
 
     def _check(self):
         """Check invariant of Tribool."""
