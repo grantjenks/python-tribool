@@ -32,7 +32,7 @@ Features
 - Pure-Python (easy to hack with)
 - Fully Documented
 - 100% Test Coverage
-- Pragmatic Design (simply a few truth tables)
+- Pragmatic Design (mostly a few truth tables and thread-safe singleton pattern)
 - Developed on Python 2.7
 - Tested on CPython 2.6, 2.7, 3.2, 3.3, 3.4 and PyPy 2.5+, PyPy3 2.4+
 
@@ -42,29 +42,106 @@ Quickstart
 Installing SortedContainers is simple with
 `pip <http://www.pip-installer.org/>`_::
 
-    $ pip install tribool
+  $ pip install tribool
 
 You can access documentation in the interpreter with Python's built-in help
 function:
 
-    >>> from tribool import Tribool
-    >>> help(Tribool)
+  >>> from tribool import Tribool
+  >>> help(Tribool)
 
 Tutorial
 --------
 
+A Python Tribool may have any of three values::
+
+  >>> from tribool import Tribool
+  >>> Tribool(True)  # True
+  >>> Tribool(False) # False
+  >>> Tribool(None)  # Indeterminate
+
+Those three values correspond to True, False and Indeterminate. To view that
+value, convert the Tribool to a string::
+
+  >>> print Tribool(True), Tribool(False), Tribool(None)
+  True False Indeterminate
+
+The logical operators are also defined over these values. For example, the
+result of negation::
+
+  >>> for value in (True, False, None):
+  ...     print '~', Tribool(value), '=', ~Tribool(value)
+  ~ True = False
+  ~ False = True
+  ~ Indeterminate = Indeterminate
+
+Likewise for `and`, `or`, and `xor` the operators involving only True and
+False are unchanged. And mostly those involving Indeterminate result in
+Indeterminate. For example::
+
+  >>> True & Tribool(None)  # True and Indeterminate = Indeterminate
+  Tribool(None)
+  >>> False | Tribool(None) # False or Indeterminate = Indeterminate
+  Tribool(None)
+  >>> None ^ Tribool(None)  # Indeterminate xor Indeterminate = Indeterminate
+  Tribool(None)
+
+But there are a couple cases where this is not so::
+
+  >>> True | Tribool(None)  # True or Indeterminate = True
+  Tribool(True)
+  >>> False & Tribool(None) # False and Indeterminate = False
+  Tribool(False)
+
+Notice that the bitwise-operators, `&|^~`, have been used rather than the
+short-circuiting `and`, `or`, `not`. Python supports short-circuiting operators
+only for boolean values and you cannot implicitly convert a Tribool to a
+boolean.  An attempt to do so will raise a `ValueError`::
+
+  >>> not Tribool(True)
+  Traceback (most recent call last):
+    ...
+  ValueError: Cannot implicitly convert Tribool to bool (use the bitwise
+  (&, |, ^, ~) operators or insert a cast and use Tribool(...).value)
+
+For this reason, you cannot directly use a Tribool in an `if` statement::
+
+  >>> if Tribool(True): pass
+  Traceback (most recent call last):
+    ...
+  ValueError: Cannot implicitly convert Tribool to bool ...
+
+To test the value of a Tribool, use the `value` property::
+
+  >>> print Tribool(True).value, Tribool(False).value, Tribool(None).value
+  True False None
+  >>> (Tribool(None) | True).value is True
+  True
+  >>> ready, committed = Tribool(True), Tribool(None)
+  >>> if (ready & committed) is not True:
+  ...     print 'Still waiting.'
+  Still waiting.
+
+When the Tribool value is Indeterminate, the `value` property will be `None`.
+For example::
+
+  >>> status = Tribool(None)
+  >>> # Do something that will update status.
+  >>> while status.value is None:
+  ...     time.sleep(1) # Busy-wait.
+  >>> if status.value is True:
+  ...     print 'Success'
+  ... else:
+  ...     print 'Error'
+
 .. todo::
-   // testing for indeterminate
-   // using it with django's NullBooleanField
-   // show `and`, `or`, `not`, and `==`
-   // can't use short-circuiting operators
-   // http://en.wikipedia.org/wiki/Null_(SQL)
-   // http://www.boost.org/doc/libs/release/doc/html/tribool.html
-   // tribools are singletons
+   // tribool equality is special
+   // tribools are singletons (immutable)
    // tribools are hashable (is operator)
    // tribools are container-able (is operator)
-   // tribool equality is special
-
+   // using it with django's NullBooleanField
+   // http://en.wikipedia.org/wiki/Null_(SQL)
+   // http://www.boost.org/doc/libs/release/doc/html/tribool.html
 
 Reference and Indices
 ---------------------
