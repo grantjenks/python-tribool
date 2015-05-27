@@ -56,9 +56,9 @@ Tutorial
 A Python Tribool may have any of three values::
 
   >>> from tribool import Tribool
-  >>> Tribool(True)  # True
-  >>> Tribool(False) # False
-  >>> Tribool(None)  # Indeterminate
+  >>> Tribool(True)          # True
+  >>> Tribool('False')       # False
+  >>> Tribool(Tribool(None)) # Indeterminate
 
 Those three values correspond to True, False and Indeterminate. To view that
 value, convert the Tribool to a string::
@@ -118,7 +118,7 @@ To test the value of a Tribool, use the `value` property::
   >>> (Tribool(None) | True).value is True
   True
   >>> ready, committed = Tribool(True), Tribool(None)
-  >>> if (ready & committed) is not True:
+  >>> if (ready & committed).value is not True:
   ...     print 'Still waiting.'
   Still waiting.
 
@@ -134,14 +134,101 @@ For example::
   ... else:
   ...     print 'Error'
 
+Tribools also work with equality/inequality relationships. Comparing Tribools
+returns a Tribool because the result may be ambiguous. For the less-than and
+greater-than relationships, True corresponds to 1 and False to 0 just as with
+boolean data types. The Indeterminate value is either 0 or 1 which has some
+unusual implications. Some example inequalities::
+
+  >>> Tribool(False) < Tribool(True)
+  Tribool(True)
+  >>> Tribool(False) == Tribool(False)
+  Tribool(True)
+  >>> Tribool(False) > Tribool(True)
+  Tribool(False)
+
+The unusual implication of the Indeterminate value is that it is not equal
+to itself::
+
+  >>> print Tribool(True) >= Tribool(None)
+  True
+  >>> print Tribool(False) < Tribool(None)
+  Indeterminate
+  >>> print Tribool(None) == Tribool(None)
+  Indeterminate
+
+When an object is not equal to itself, strange things can happen. Fortunately
+Python defines two notions of equality. The first is defined by the `is`
+relationship and may not be overriden. The second is defined by the `__eq__`
+method. To behave as value types, Tribool objects are singletons. Threrefore
+two Tribools with the same value will have matching `id` values. For example::
+
+  >>> (id(Tribool(True)), id(Tribool(True)), id(Tribool(True)))
+  (4426760848, 4426760848, 4426760848)
+  >>> (id(Tribool(None)), id(Tribool(None)), id(Tribool(None)))
+  (4426719568, 4426719568, 4426719568)
+
+This is accomplished by overriding the `__new__` constructor and implementing
+a thread-safe singleton pattern. As singletons, Tribool objects are immutable
+and comparable using the `is` operator. Judicious use often results in code
+that is more readable::
+
+  >>> Succeeded, TryAgain = Tribool(True), Tribool(None)
+  >>> status = Tribool(None)
+  >>> while status is TryAgain:
+  ...     status = try_something()
+  >>> if status is Succeeded:
+  ...     print 'Success!'
+
+Another benefit of the singleton pattern is that Tribool objects are hashable::
+
+  >>> display = {
+  ...     Tribool(True): 'Success',
+  ...     Tribool(False): 'Error',
+  ...     Tribool(None): 'Try Again',
+  ... }
+  >>> print display[Tribool(None)]
+  Try Again
+
+A surprising result occurs however with containers. When using the `in`
+operator, objects are tested for membership using equality. But this occurs
+in several steps, the first of which is using the `is` operator followed by
+the `__eq__` method. In case the `__eq__` method fails to return a boolean-
+typed value, an implicit conversion occurs which Tribool does not permit.
+For example::
+
+  >>> Success, Error, Unknown = map(Tribool, (True, False, None))
+  >>> Success in [Success, Error, Unknown] # Works!
+  True
+  >>> Error in [Success, Error, Unknown]   # Fails
+  Traceback (most recent call last):
+    ...
+  ValueError: Cannot implicitly convert Tribool to bool ...
+
+The latter attempt fails because `Error is Success` returns False and so
+`Error == Success` is tried. That returns `Tribool(False)` which does not
+have type `bool` and so an implicit conversion occurs. To achieve the
+affect of the `in` operator use the `any` built-in and a generator expression
+like so::
+
+  >>> statuses = [Success, Success, Unknown, Error]
+  >>> any(status is Error for status in statuses)
+  True
+
+The Python Tribool module has many uses but it was originally designed to
+support the notion of `three-valued logic as found in SQL
+<http://en.wikipedia.org/wiki/Null_(SQL)>`_. SQL defines similar rules for
+its Null value type in logical expressions. `Django's NullBooleanField
+<https://docs.djangoproject.com/en/stable/ref/models/fields/#nullbooleanfield>`_
+is an example where these ideas intersect.
+
 .. todo::
-   // tribool equality is special
-   // tribools are singletons (immutable)
-   // tribools are hashable (is operator)
-   // tribools are container-able (is operator)
-   // using it with django's NullBooleanField
-   // http://en.wikipedia.org/wiki/Null_(SQL)
    // http://www.boost.org/doc/libs/release/doc/html/tribool.html
+   // add test for _names
+   // add test for hash
+   // add test for `is` operator
+   // add test for `id` values
+   // add test for `in` operator
 
 Reference and Indices
 ---------------------
