@@ -13,7 +13,8 @@ class Tribool(object):
     def __new__(cls, value=None):
         """Create Tribool object.
 
-        `value` may be any of True, False, None, or Tribool.
+        `value` may be any of True, False, None, Tribool or a name
+        like 'True', 'False', 'None', 'Indeterminate', or 'Unknown'.
         None is representative of an indeterminate boolean value.
         Instances with the same value are identical (singleton-like).
         This method is thread-safe.
@@ -29,6 +30,11 @@ class Tribool(object):
 
         return cls._cache[value]
 
+    _names = {
+        'True': True, 'False': False, 'None': None,
+        'Indeterminate': None, 'Unknown': None,
+    }
+
     @classmethod
     def _resolve(cls, that):
         """Resolve given value to one of True, False, or None.
@@ -39,6 +45,8 @@ class Tribool(object):
             return that
         elif isinstance(that, cls):
             return that._value
+        elif that in cls._names:
+            return cls._names[that]
         else:
             raise ValueError('Unsupported Value: ' + repr(that))
 
