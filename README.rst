@@ -1,8 +1,8 @@
 Tribool: Three-Valued Logic
 ===========================
 
-Tribool is an Apache2 licensed Python module that implements three-valued
-logic.
+`Tribool <http://www.grantjenks.com/docs/tribool/>`_ is an Apache2 licensed
+Python module that implements three-valued logic.
 
 Suppose for a moment that you're attempting to store a value across a network
 connection. You begin with a simple protocol in which the server stores the
@@ -241,8 +241,6 @@ Reference and Indices
 * `Tribool at PyPI`_
 * `Tribool at GitHub`_
 * `Tribool Issue Tracker`_
-* :ref:`search`
-* :ref:`genindex`
 
 .. _`Tribool Documentation`: http://www.grantjenks.com/docs/tribool/
 .. _`Tribool at PyPI`: https://pypi.python.org/pypi/tribool/
