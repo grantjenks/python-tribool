@@ -113,7 +113,7 @@ def test_in():
     No in (Yes, No, Maybe)
 
 def test_contains():
-    values = (Yes, No, Maybe) = map(Tribool, (True, False, None))
+    values = (Yes, No, Maybe) = list(map(Tribool, (True, False, None)))
     assert any(value is Tribool(True) for value in values)
     assert any(value is Tribool(False) for value in values)
     assert any(value is Tribool(None) for value in values)
