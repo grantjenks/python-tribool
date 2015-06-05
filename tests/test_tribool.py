@@ -75,6 +75,49 @@ def test_index():
     values = [0, 1, 2, 3]
     values[Tribool(True)]
 
+def test_names():
+    Yes, No, Maybe = map(Tribool, (True, False, None))
+    assert Yes is Tribool('True')
+    assert No is Tribool('False')
+    assert Maybe is Tribool('None')
+    assert Maybe is Tribool('Indeterminate')
+    assert Maybe is Tribool('Maybe')
+    assert Maybe is Tribool('Unknown')
+
+def test_hash():
+    Yes, No, Maybe = map(Tribool, (True, False, None))
+    assert all(hash(value) for value in (Yes, No, Maybe))
+    values = {Yes: 'Yes', No: 'No', Maybe: 'Maybe'}
+    assert values[Yes] == 'Yes'
+    assert values[No] == 'No'
+    assert values[Maybe] == 'Maybe'
+
+def test_is():
+    Yes1, No1, Maybe1 = map(Tribool, (True, False, None))
+    Yes2, No2, Maybe2 = map(Tribool, (True, False, None))
+    assert Yes1 is Yes2
+    assert No1 is No2
+    assert Maybe1 is Maybe2
+
+def test_id():
+    Yes1, No1, Maybe1 = map(Tribool, (True, False, None))
+    Yes2, No2, Maybe2 = map(Tribool, (True, False, None))
+    assert id(Yes1) == id(Yes2)
+    assert id(No1) == id(No2)
+    assert id(Maybe1) == id(Maybe2)
+
+@raises(ValueError)
+def test_in():
+    Yes, No, Maybe = map(Tribool, (True, False, None))
+    assert Yes in (Yes, No, Maybe)
+    No in (Yes, No, Maybe)
+
+def test_contains():
+    values = (Yes, No, Maybe) = map(Tribool, (True, False, None))
+    assert any(value is Tribool(True) for value in values)
+    assert any(value is Tribool(False) for value in values)
+    assert any(value is Tribool(None) for value in values)
+
 def test_str():
     assert str(Tribool(True)) == 'True'
     assert str(Tribool(False)) == 'False'
