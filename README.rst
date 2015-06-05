@@ -45,7 +45,7 @@ Installing Tribool is simple with
   $ pip install tribool
 
 You can access documentation in the interpreter with Python's built-in help
-function:
+function::
 
   >>> from tribool import Tribool
   >>> help(Tribool)
