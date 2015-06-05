@@ -6,8 +6,8 @@ class Tribool(object):
     Tribool represents True, False, or Indeterminate using a private
     `_value` member set to True, False, or None respectively.
     """
-    import threading
-    _lock = threading.Lock()
+    import threading as _threading
+    _lock = _threading.Lock()
     _cache = {}
 
     def __new__(cls, value=None):
@@ -32,7 +32,7 @@ class Tribool(object):
 
     _names = {
         'True': True, 'False': False, 'None': None,
-        'Indeterminate': None, 'Unknown': None,
+        'Indeterminate': None, 'Maybe': None, 'Unknown': None,
     }
 
     @classmethod
