@@ -34,7 +34,7 @@ setup(
     long_description=readme,
     author='Grant Jenks',
     author_email='contact@grantjenks.com',
-    url='https://github.com/grantjenks/tribool',
+    url='http://www.grantjenks.com/docs/tribool/',
     py_modules=['tribool'],
     package_data={'': ['LICENSE', 'README.rst']},
     tests_require=['tox'],
