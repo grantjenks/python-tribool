@@ -39,7 +39,7 @@ Features
 Quickstart
 ----------
 
-Installing SortedContainers is simple with
+Installing Tribool is simple with
 `pip <http://www.pip-installer.org/>`_::
 
   $ pip install tribool
@@ -222,13 +222,13 @@ its Null value type in logical expressions. `Django's NullBooleanField
 <https://docs.djangoproject.com/en/stable/ref/models/fields/#nullbooleanfield>`_
 is an example where these ideas intersect.
 
-.. todo::
-   // http://www.boost.org/doc/libs/release/doc/html/tribool.html
-   // add test for _names
-   // add test for hash
-   // add test for `is` operator
-   // add test for `id` values
-   // add test for `in` operator
+Some readers will be familiar with `Boost.Tribool
+<http://www.boost.org/doc/libs/release/doc/html/tribool.html>`_, an
+implementation of the Tribool datatype in C++. While the semantics of both
+packages are the same, the design of the Boost implementation differs a great
+deal. In particular, Boost defines a new `indeterminate` keyword rather than
+using the `null` value in C++. An `Indeterminate` object was considered in the
+design of this module but discarded in favor of Python's built-in `None`.
 
 Reference and Indices
 ---------------------
