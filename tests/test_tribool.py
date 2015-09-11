@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import copy
+import pickle
+
 import nose
 from nose.tools import raises
 
@@ -138,6 +140,17 @@ def test_copy():
     assert Yes is Yes_deep
     assert No is No_deep
     assert Maybe is Maybe_deep
+
+def test_pickle():
+    Yes, No, Maybe = map(Tribool, (True, False, None))
+
+    pickler = lambda value: pickle.loads(pickle.dumps(value))
+
+    Yes_pickle, No_pickle, Maybe_pickle = map(pickler, (Yes, No, Maybe))
+
+    assert Yes is Yes_pickle
+    assert No is No_pickle
+    assert Maybe is Maybe_pickle
 
 def test_str():
     assert str(Tribool(True)) == 'True'

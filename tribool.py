@@ -145,6 +145,10 @@ class Tribool(object):
         """Return `self` (singleton pattern)."""
         return self
 
+    def __reduce__(self):
+        """Pickle `self` (singleton pattern)."""
+        return (self.__class__, (self._value,))
+
     def __str__(self):
         """String representing Tribool value."""
         return 'Indeterminate' if self._value is None else str(self._value)
