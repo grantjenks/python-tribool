@@ -180,7 +180,7 @@ that is more readable::
   >>> if status is Succeeded:
   ...     print 'Success!'
 
-Another benefit of the singleton pattern is that Tribool objects are hashable::
+Tribool objects are also hashable and work inside `dict`s and map-like types::
 
   >>> display = {
   ...     Tribool(True): 'Success',
@@ -214,6 +214,12 @@ like so::
   >>> statuses = [Success, Success, Unknown, Error]
   >>> any(status is Error for status in statuses)
   True
+
+To obey the singleton pattern, Tribool also implements the `__copy__` and
+`__deepcopy__` methods as part of the `copy` module protocol. Pickling is
+another method of copying objects and so `__reduce__` is implemented as part of
+the `pickle` protocol. Note also that Tribool inherits directly from `tuple` to
+prevent mutation of its internal state.
 
 The Python Tribool module has many uses but it was originally designed to
 support the notion of `three-valued logic as found in SQL
