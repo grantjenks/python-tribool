@@ -119,29 +119,39 @@ def test_contains():
     assert any(value is Tribool(False) for value in values)
     assert any(value is Tribool(None) for value in values)
 
+def test_copy():
+    Yes, No, Maybe = map(Tribool, (True, False, None))
+    Yes_dup, No_dup, Maybe_dup = map(Tribool, (True, False, None))
+
+    assert Yes is Yes_dup
+    assert No is No_dup
+    assert Maybe is Maybe_dup
+
+    Yes_copy, No_copy, Maybe_copy = map(copy.copy, (Yes, No, Maybe))
+
+    assert Yes is Yes_copy
+    assert No is No_copy
+    assert Maybe is Maybe_copy
+
+    Yes_deep, No_deep, Maybe_deep = map(copy.deepcopy, (Yes, No, Maybe))
+
+    assert Yes is Yes_deep
+    assert No is No_deep
+    assert Maybe is Maybe_deep
+
 def test_str():
     assert str(Tribool(True)) == 'True'
     assert str(Tribool(False)) == 'False'
     assert str(Tribool(None)) == 'Indeterminate'
 
-def test_copy():
-    for value in (True, False, None):
-        for other in (True, False, None):
-            if value != other:
-                tri_copy = copy.copy(Tribool(value))
-                tri_deepcopy = copy.deepcopy(Tribool(value))
-                assert tri_copy is Tribool(value)
-                assert tri_deepcopy is Tribool(value)
-                assert tri_copy is not Tribool(other)
-
-def test_check():
-    for value in (True, False, None):
-        Tribool(value)._check()
-
 def test_repr():
     assert repr(Tribool(True)) == 'Tribool(True)'
     assert repr(Tribool(False)) == 'Tribool(False)'
     assert repr(Tribool(None)) == 'Tribool(None)'
+
+def test_check():
+    for value in (True, False, None):
+        Tribool(value)._check()
 
 if __name__ == '__main__':
     nose.run()

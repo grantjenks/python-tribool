@@ -137,6 +137,14 @@ class Tribool(object):
         """Raise ValueError on truncation."""
         raise ValueError('Connect truncate Tribool')
 
+    def __copy__(self):
+        """Return `self` (singleton pattern)."""
+        return self
+
+    def __deepcopy__(self, that):
+        """Return `self` (singleton pattern)."""
+        return self
+
     def __str__(self):
         """String representing Tribool value."""
         return 'Indeterminate' if self._value is None else str(self._value)
@@ -144,14 +152,6 @@ class Tribool(object):
     def __repr__(self):
         """String representation of Tribool."""
         return 'Tribool({0})'.format(str(self._value))
-
-    def __copy__(self):
-        """Value of copy.copy()."""
-        return self
-
-    def __deepcopy__(self, memo):
-        """Value of copy.deepcopy()."""
-        return self
 
     def _check(self):
         """Check invariant of Tribool."""
