@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import copy
 import nose
 from nose.tools import raises
 
@@ -122,6 +123,16 @@ def test_str():
     assert str(Tribool(True)) == 'True'
     assert str(Tribool(False)) == 'False'
     assert str(Tribool(None)) == 'Indeterminate'
+
+def test_copy():
+    for value in (True, False, None):
+        for other in (True, False, None):
+            if value != other:
+                tri_copy = copy.copy(Tribool(value))
+                tri_deepcopy = copy.deepcopy(Tribool(value))
+                assert tri_copy is Tribool(value)
+                assert tri_deepcopy is Tribool(value)
+                assert tri_copy is not Tribool(other)
 
 def test_check():
     for value in (True, False, None):

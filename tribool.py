@@ -145,6 +145,14 @@ class Tribool(object):
         """String representation of Tribool."""
         return 'Tribool({0})'.format(str(self._value))
 
+    def __copy__(self):
+        """Value of copy.copy()."""
+        return self
+
+    def __deepcopy__(self, memo):
+        """Value of copy.deepcopy()."""
+        return self
+
     def _check(self):
         """Check invariant of Tribool."""
         assert (self._value in (True, False, None))
