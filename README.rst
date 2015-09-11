@@ -233,13 +233,11 @@ design of this module but discarded in favor of Python's built-in `None`.
 Reference and Indices
 ---------------------
 
-* `Tribool API Reference`_
 * `Tribool Documentation`_
 * `Tribool at PyPI`_
 * `Tribool at GitHub`_
 * `Tribool Issue Tracker`_
 
-.. _`Tribool API Reference`: http://www.grantjenks.com/docs/tribool/api.html
 .. _`Tribool Documentation`: http://www.grantjenks.com/docs/tribool/
 .. _`Tribool at PyPI`: https://pypi.python.org/pypi/tribool/
 .. _`Tribool at GitHub`: https://github.com/grantjenks/python_tribool/
