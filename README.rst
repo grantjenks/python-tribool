@@ -180,7 +180,7 @@ that is more readable::
   >>> if status is Succeeded:
   ...     print 'Success!'
 
-Tribool objects are also hashable and work inside `dict`s and map-like types::
+Tribool objects are also hashable and work inside `dict` and map-like types::
 
   >>> display = {
   ...     Tribool(True): 'Success',
