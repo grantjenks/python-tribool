@@ -219,8 +219,8 @@ class Tribool(tuple):
             (None, None) : None }
 
 __title__ = 'tribool'
-__version__ = '0.5.4'
-__build__ = 0x000504
+__version__ = '0.6.1'
+__build__ = 0x000601
 __author__ = 'Grant Jenks'
 __license__ = 'Apache 2.0'
 __copyright__ = 'Copyright 2015 Grant Jenks'
