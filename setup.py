@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
-
-import sys
 from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
-
+import sys
 import tribool
+
 
 class Tox(TestCommand):
     def finalize_options(self):
@@ -16,21 +14,14 @@ class Tox(TestCommand):
         errno = tox.cmdline(self.test_args)
         sys.exit(errno)
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
 
-with open('README.rst') as f:
-    readme = f.read()
-
-with open('LICENSE') as f:
-    license = f.read()
+with open('README.rst') as reader:
+    readme = reader.read()
 
 setup(
     name='tribool',
     version=tribool.__version__,
-    description='Tribool data type',
+    description='Three-valued logic data type.',
     long_description=readme,
     author='Grant Jenks',
     author_email='contact@grantjenks.com',
@@ -39,12 +30,13 @@ setup(
     package_data={'': ['LICENSE', 'README.rst']},
     tests_require=['tox'],
     cmdclass={'test': Tox},
-    license=license,
+    license='Apache 2.0',
+    install_requires=[],
     classifiers=(
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
-        'Natural Language :: English',
         'License :: OSI Approved :: Apache Software License',
+        'Natural Language :: English',
         'Programming Language :: Python',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
