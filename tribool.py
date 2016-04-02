@@ -1,15 +1,20 @@
-# -*- coding: utf-8 -*-
+"Tribool: three-valued logic data type."
 
 class Tribool(tuple):
-    """Tribool implementation of three-valued logic.
+    """Implementation of three-valued logic.
 
     Tribool represents True, False, or Indeterminate as a tuple of one value
     set to True, False, or None respectively.
 
     """
     import threading as _threading
+
     _lock = _threading.Lock()
     _cache = {}
+    _names = {
+        'True': True, 'False': False, 'None': None,
+        'Indeterminate': None, 'Maybe': None, 'Unknown': None,
+    }
 
     def __new__(cls, value=None):
         """Create Tribool object.
@@ -19,6 +24,7 @@ class Tribool(tuple):
         None is representative of an indeterminate boolean value.
         Instances with the same value are identical (singleton-like).
         This method is thread-safe.
+
         """
         value = cls._resolve(value)
 
@@ -30,16 +36,12 @@ class Tribool(tuple):
 
         return cls._cache[value]
 
-    _names = {
-        'True': True, 'False': False, 'None': None,
-        'Indeterminate': None, 'Maybe': None, 'Unknown': None,
-    }
-
     @classmethod
     def _resolve(cls, that):
-        """Resolve given value to one of True, False, or None.
+        """Resolve `that` to one of True, False, or None.
 
-        Raises ValueError if given value's type is unsupported.
+        Raises ValueError if `that` is unsupported.
+
         """
         if that is True or that is False or that is None:
             return that
@@ -48,70 +50,68 @@ class Tribool(tuple):
         elif that in cls._names:
             return cls._names[that]
         else:
-            raise ValueError('Unsupported Value: ' + repr(that))
+            raise ValueError('Unsupported value: %r' % that)
 
     @property
     def value(self):
-        """Property representing the underlying value True, False or
-        Indeterminate which are mapped to True, False or None in Python.
-        """
+        "Shortcut for internal and immutable True, False or None value."
         return self[0]
 
     def __invert__(self):
-        """Logical negation of Tribool value."""
+        "Logical negation of Tribool value."
         return Tribool(Tribool._not[self.value])
 
     def __and__(self, that):
-        """Logical AND of Tribool and other value."""
+        "Logical `and` of Tribool and `that`."
         return Tribool(Tribool._and[self.value, self._resolve(that)])
 
     def __rand__(self, that):
-        """Logical AND of Tribool and other value."""
+        "Logical `and` of Tribool and `that`."
         return Tribool(Tribool._and[self.value, self._resolve(that)])
 
     def __or__(self, that):
-        """Logical OR of Tribool and other value."""
+        "Logical `or` of Tribool and `that`."
         return Tribool(Tribool._or[self.value, self._resolve(that)])
 
     def __ror__(self, that):
-        """Logical OR of Tribool and other value."""
+        "Logical `or` of Tribool and `that`."
         return Tribool(Tribool._or[self.value, self._resolve(that)])
 
     def __xor__(self, that):
-        """Logical XOR of Tribool and other value."""
+        "Logical `xor` of Tribool and `that`."
         return Tribool(Tribool._xor[self.value, self._resolve(that)])
 
     def __rxor__(self, that):
-        """Logical XOR of Tribool and other value."""
+        "Logical `xor` of Tribool and `that`."
         return Tribool(Tribool._xor[self.value, self._resolve(that)])
 
     def __eq__(self, that):
-        """Logical equality of Tribool and other value."""
+        "Logical equality of Tribool and `that`."
         return Tribool(Tribool._eq[self.value, self._resolve(that)])
 
     def __ne__(self, that):
-        """Logical inequality of Tribool and other value."""
+        "Logical inequality of Tribool and `that`."
         return ~Tribool(Tribool._eq[self.value, self._resolve(that)])
 
     def __lt__(self, that):
-        """Logical less than of Tribool and other value."""
+        "Logical less than of Tribool and `that`."
         return Tribool(Tribool._lt[self.value, self._resolve(that)])
 
     def __le__(self, that):
-        """Logical less than or equal of Tribool and other value."""
+        "Logical less than or equal of Tribool and `that`."
         return (Tribool(Tribool._lt[self.value, self._resolve(that)])
                 | (self == that))
 
     def __gt__(self, that):
-        """Logical greater than of Tribool and other value."""
+        "Logical greater than of Tribool and `that`."
         return ~(self <= that)
 
     def __ge__(self, that):
-        """Logical greater than or equal of Tribool and other value."""
+        "Logical greater than or equal of Tribool and `that`."
         return ~(self < that)
 
     def __hash__(self):
-        """Hash of Tribool."""
+        "Hash of Tribool."
         return id(self)
 
     def __nonzero__(self):
@@ -122,47 +122,48 @@ class Tribool(tuple):
         operators. Use the bitwise (&, |, ^, ~) operators instead.
         Likewise, if the comparison operators (<, <=, >, >=) were used
         then a type conversion using Tribool(...) is required.
+
         """
         raise ValueError('Cannot implicitly convert Tribool to bool'
                          ' (use the bitwise (&, |, ^, ~) operators'
-                         ' or insert a cast and use Tribool(...).value)')
+                         ' or convert result and use Tribool(...).value)')
 
     __bool__ = __nonzero__
 
     def __index__(self):
-        """Raise ValueError on conversion to int."""
+        "Raise ValueError on conversion to index."
         raise ValueError('Cannot convert Tribool to index')
 
     def __trunc__(self):
-        """Raise ValueError on truncation."""
-        raise ValueError('Connect truncate Tribool')
+        "Raise ValueError on truncation."
+        raise ValueError('Cannot truncate Tribool')
 
     def __copy__(self):
-        """Return `self` (singleton pattern)."""
+        "Return `self` (singleton pattern)."
         return self
 
     def __deepcopy__(self, that):
-        """Return `self` (singleton pattern)."""
+        "Return `self` (singleton pattern)."
         return self
 
     def __reduce__(self):
-        """Pickle `self` (singleton pattern)."""
+        "Pickle `self` (singleton pattern)."
         return (self.__class__, (self.value,))
 
     def __str__(self):
-        """String representing Tribool value."""
-        return 'Indeterminate' if self.value is None else str(self.value)
+        "String representing Tribool value."
+        return '%s' % self.value
 
     def __repr__(self):
-        """String representation of Tribool."""
-        return 'Tribool({0})'.format(str(self.value))
+        "String representation of Tribool."
+        return 'Tribool(%r)' % self.value
 
     def _check(self):
-        """Check invariant of Tribool."""
+        "Check invariant of Tribool."
         assert (self.value in (True, False, None))
         return self
 
-    """Logic tables for operators."""
+    # Logic tables for operators.
 
     _not = { True : False,
              False : True,
@@ -218,9 +219,10 @@ class Tribool(tuple):
             (None, False) : False,
             (None, None) : None }
 
+
 __title__ = 'tribool'
 __version__ = '0.6.2'
 __build__ = 0x000602
 __author__ = 'Grant Jenks'
 __license__ = 'Apache 2.0'
-__copyright__ = 'Copyright 2015 Grant Jenks'
+__copyright__ = 'Copyright 2016 Grant Jenks'
