@@ -134,10 +134,6 @@ class Tribool(tuple):
         "Raise ValueError on conversion to index."
         raise ValueError('Cannot convert Tribool to index')
 
-    def __trunc__(self):
-        "Raise ValueError on truncation."
-        raise ValueError('Cannot truncate Tribool')
-
     def __copy__(self):
         "Return `self` (singleton pattern)."
         return self
@@ -160,64 +156,76 @@ class Tribool(tuple):
 
     def _check(self):
         "Check invariant of Tribool."
-        assert (self.value in (True, False, None))
+        assert self.value in (True, False, None)
         return self
 
     # Logic tables for operators.
 
-    _not = { True : False,
-             False : True,
-             None : None }
+    _not = {
+        True : False,
+        False : True,
+        None : None
+    }
 
-    _and = { (True, True) : True,
-             (True, False) : False,
-             (True, None) : None,
-             (False, True) : False,
-             (False, False) : False,
-             (False, None) : False,
-             (None, True) : None,
-             (None, False) : False,
-             (None, None) : None }
+    _and = {
+        (True, True) : True,
+        (True, False) : False,
+        (True, None) : None,
+        (False, True) : False,
+        (False, False) : False,
+        (False, None) : False,
+        (None, True) : None,
+        (None, False) : False,
+        (None, None) : None
+    }
 
-    _or = { (True, True) : True,
-            (True, False) : True,
-            (True, None) : True,
-            (False, True) : True,
-            (False, False) : False,
-            (False, None) : None,
-            (None, True) : True,
-            (None, False) : None,
-            (None, None) : None }
+    _or = {
+        (True, True) : True,
+        (True, False) : True,
+        (True, None) : True,
+        (False, True) : True,
+        (False, False) : False,
+        (False, None) : None,
+        (None, True) : True,
+        (None, False) : None,
+        (None, None) : None
+    }
 
-    _xor = { (True, True) : False,
-             (True, False) : True,
-             (True, None) : None,
-             (False, True) : True,
-             (False, False) : False,
-             (False, None) : None,
-             (None, True) : None,
-             (None, False) : None,
-             (None, None) : None }
+    _xor = {
+        (True, True) : False,
+        (True, False) : True,
+        (True, None) : None,
+        (False, True) : True,
+        (False, False) : False,
+        (False, None) : None,
+        (None, True) : None,
+        (None, False) : None,
+        (None, None) : None
+    }
 
-    _eq = { (True, True) : True,
-            (True, False) : False,
-            (True, None) : None,
-            (False, True) : False,
-            (False, False) : True,
-            (False, None) : None,
-            (None, True) : None,
-            (None, False) : None,
-            (None, None) : None }
+    _eq = {
+        (True, True) : True,
+        (True, False) : False,
+        (True, None) : None,
+        (False, True) : False,
+        (False, False) : True,
+        (False, None) : None,
+        (None, True) : None,
+        (None, False) : None,
+        (None, None) : None
+    }
 
-    _lt = { (True, True) : False,
-            (True, False) : False,
-            (True, None) : False,
-            (False, True) : True,
-            (False, False) : False,
-            (False, None) : None,
-            (None, True) : None,
-            (None, False) : False,
-            (None, None) : None }
+    _lt = {
+        (True, True) : False,
+        (True, False) : False,
+        (True, None) : False,
+        (False, True) : True,
+        (False, False) : False,
+        (False, None) : None,
+        (None, True) : None,
+        (None, False) : False,
+        (None, None) : None
+    }
 
 
 __title__ = 'tribool'
