@@ -118,11 +118,11 @@ class Tribool(tuple):
     def __nonzero__(self):
         """Raise TypeError on conversion to bool.
 
-        When this occurs, it may indicate that the logical operators:
-        (and, or, not) were used. Python does not permit overloading these
-        operators. Use the bitwise (&, |, ^, ~) operators instead.
-        Likewise, if the comparison operators (<, <=, >, >=) were used
-        then a type conversion using Tribool(...) is required.
+        When this occurs, it may indicate that the logical operators: (and, or,
+        not) were used. Python does not permit overloading these operators. Use
+        the bitwise (`&`, `|`, `^`, `~`) operators instead.  Likewise, if the
+        comparison operators (`<`, `<=`, `>`, `>=`) were used then a type
+        conversion using Tribool(...) is required.
 
         """
         raise TypeError('Cannot convert Tribool to bool'
