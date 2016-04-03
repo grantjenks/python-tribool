@@ -65,15 +65,11 @@ def test_cmp():
             tri_value > tri_other
             tri_value >= tri_other
 
-@raises(ValueError)
+@raises(TypeError)
 def test_bool():
     bool(Tribool())
 
-@raises(ValueError)
-def test_int():
-    int(Tribool())
-
-@raises(ValueError)
+@raises(TypeError)
 def test_index():
     values = [0, 1, 2, 3]
     values[Tribool(True)]
@@ -109,7 +105,7 @@ def test_id():
     assert id(No1) == id(No2)
     assert id(Maybe1) == id(Maybe2)
 
-@raises(ValueError)
+@raises(TypeError)
 def test_in():
     Yes, No, Maybe = map(Tribool, (True, False, None))
     assert Yes in (Yes, No, Maybe)
