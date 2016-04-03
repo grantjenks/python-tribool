@@ -125,7 +125,7 @@ html_theme_options = {
     'analytics_id': 'UA-19364636-2',
     'show_powered_by': False,
     'github_user': 'grantjenks',
-    'github_repo': 'python_tribool',
+    'github_repo': 'python-tribool',
 }
 
 # Add any paths that contain custom themes here, relative to this directory.
