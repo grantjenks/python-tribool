@@ -69,11 +69,6 @@ def test_cmp():
 def test_bool():
     bool(Tribool())
 
-@raises(TypeError)
-def test_index():
-    values = [0, 1, 2, 3]
-    values[Tribool(True)]
-
 def test_names():
     Yes, No, Maybe = map(Tribool, (True, False, None))
     assert Yes is Tribool('True')

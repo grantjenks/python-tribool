@@ -131,10 +131,6 @@ class Tribool(tuple):
 
     __bool__ = __nonzero__
 
-    def __index__(self):
-        "Raise TypeError on conversion to index."
-        raise TypeError('Cannot convert Tribool to index')
-
     def __copy__(self):
         "Return `self` (singleton pattern)."
         return self
