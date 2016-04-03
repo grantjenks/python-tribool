@@ -149,7 +149,7 @@ class Tribool(tuple):
 
     def __repr__(self):
         "String representation of Tribool."
-        return 'Tribool(%r)' % self.value
+        return '%s(%r)' % (self.__class__.__name__, self.value)
 
     def _check(self):
         "Check invariant of Tribool."
