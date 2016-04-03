@@ -32,7 +32,7 @@ Features
 - Pure-Python (easy to hack with)
 - Fully Documented
 - 100% Test Coverage
-- Pragmatic Design (mostly a few truth tables and thread-safe singleton pattern)
+- Pragmatic Design (mostly uses truth tables and thread-safe singleton pattern)
 - Developed on Python 2.7
 - Tested on CPython 2.6, 2.7, 3.2, 3.3, 3.4 and PyPy 2.5+, PyPy3 2.4+
 
