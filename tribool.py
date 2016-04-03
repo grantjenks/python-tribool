@@ -15,6 +15,7 @@ class Tribool(tuple):
         'True': True, 'False': False, 'None': None,
         'Indeterminate': None, 'Maybe': None, 'Unknown': None,
     }
+    _terms = {True: 'True', False: 'False', None: 'Indeterminate'}
 
     def __new__(cls, value=None):
         """Create Tribool object.
@@ -115,7 +116,7 @@ class Tribool(tuple):
         return id(self)
 
     def __nonzero__(self):
-        """Raise ValueError on conversion to bool.
+        """Raise TypeError on conversion to bool.
 
         When this occurs, it may indicate that the logical operators:
         (and, or, not) were used. Python does not permit overloading these
@@ -124,15 +125,15 @@ class Tribool(tuple):
         then a type conversion using Tribool(...) is required.
 
         """
-        raise ValueError('Cannot implicitly convert Tribool to bool'
-                         ' (use the bitwise (&, |, ^, ~) operators'
-                         ' or convert result and use Tribool(...).value)')
+        raise TypeError('Cannot convert Tribool to bool'
+                        ' (use the bitwise (&, |, ^, ~) operators'
+                        ' or convert result and use Tribool(...).value)')
 
     __bool__ = __nonzero__
 
     def __index__(self):
-        "Raise ValueError on conversion to index."
-        raise ValueError('Cannot convert Tribool to index')
+        "Raise TypeError on conversion to index."
+        raise TypeError('Cannot convert Tribool to index')
 
     def __copy__(self):
         "Return `self` (singleton pattern)."
@@ -148,7 +149,7 @@ class Tribool(tuple):
 
     def __str__(self):
         "String representing Tribool value."
-        return '%s' % self.value
+        return self._terms[self.value]
 
     def __repr__(self):
         "String representation of Tribool."
