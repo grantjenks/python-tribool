@@ -111,6 +111,12 @@ class Tribool(tuple):
         "Logical greater than or equal of Tribool and `that`."
         return ~(self < that)
 
+    def __ceil__(self):
+        return self.value is not False
+
+    def __floor__(self):
+        return self.value is True
+
     def __hash__(self):
         "Hash of Tribool."
         return id(self)
@@ -126,7 +132,8 @@ class Tribool(tuple):
 
         """
         raise TypeError('Cannot convert Tribool to bool'
-                        ' (use the bitwise (&, |, ^, ~) operators'
+                        ' (use the bitwise (&, |, ^, ~) operators,'
+                        ' use math.ceil or math.floor,'
                         ' or convert result and use Tribool(...).value)')
 
     __bool__ = __nonzero__

@@ -111,6 +111,12 @@ For this reason, you cannot directly use a Tribool in an `if` statement::
     ...
   ValueError: Cannot implicitly convert Tribool to bool ...
 
+You can constrain Tribools to bool values using the `math.ceil` and `math.floor` functions (mapping `None` to `True` and `False`, respectively)::
+
+  >>> from math import ceil
+  >>> if ceil(Tribool(None)): print("not definitely False")
+  not definitely False
+
 To test the value of a Tribool, use the `value` property::
 
   >>> print Tribool(True).value, Tribool(False).value, Tribool(None).value
