@@ -112,9 +112,11 @@ class Tribool(tuple):
         return ~(self < that)
 
     def __ceil__(self):
+        "Constrain the value to a bool, mapping Indeterminate to True"
         return self.value is not False
 
     def __floor__(self):
+        "Constrain the value to a bool, mapping Indeterminate to False"
         return self.value is True
 
     def __hash__(self):
@@ -132,8 +134,7 @@ class Tribool(tuple):
 
         """
         raise TypeError('Cannot convert Tribool to bool'
-                        ' (use the bitwise (&, |, ^, ~) operators,'
-                        ' use math.ceil or math.floor,'
+                        ' (use the bitwise (&, |, ^, ~) operators'
                         ' or convert result and use Tribool(...).value)')
 
     __bool__ = __nonzero__

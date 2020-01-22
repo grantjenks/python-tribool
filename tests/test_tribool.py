@@ -3,6 +3,7 @@
 import copy
 import pickle
 from math import ceil, floor
+import sys
 
 import nose
 from nose.tools import raises
@@ -158,19 +159,20 @@ def test_check():
     for value in (True, False, None):
         Tribool(value)._check()
 
-def test_ceil():
-    Yes, No, Maybe = map(Tribool, (True, False, None))
+if sys.version_info[0] >= 3:
+    def test_ceil():
+        Yes, No, Maybe = map(Tribool, (True, False, None))
 
-    assert ceil(Yes)
-    assert ceil(Maybe)
-    assert not ceil(No)
+        assert ceil(Yes)
+        assert ceil(Maybe)
+        assert not ceil(No)
 
-def test_floor():
-    Yes, No, Maybe = map(Tribool, (True, False, None))
+    def test_floor():
+        Yes, No, Maybe = map(Tribool, (True, False, None))
 
-    assert floor(Yes)
-    assert not floor(Maybe)
-    assert not floor(No)
+        assert floor(Yes)
+        assert not floor(Maybe)
+        assert not floor(No)
 
 if __name__ == '__main__':
     nose.run()
